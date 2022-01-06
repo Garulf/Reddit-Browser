@@ -80,7 +80,7 @@ class RedditBrowser(Flox):
     def add_favorite(self, subreddit):
         favorites = self.settings.setdefault("favorites", [])
         favorites.append(subreddit)
-        self.settings.update({"hidden_entities": favorites})
+        self.settings.update({"favorites": favorites})
         self.show_msg(
             "Entity hidden", f"{subreddit} added to your favorites."
         )
