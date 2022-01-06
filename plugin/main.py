@@ -17,8 +17,7 @@ class RedditBrowser(Flox):
         reddit = Reddit()
         if query.startswith('/'):
             if len(query) == 1:
-                with open('./history.json', "r+") as file:
-                    history = json.load(file)
+                history = self.settings.get('favorites', [])
                 for item in history:
                     self.add_item(
                         title=f'r/{item}',
@@ -79,11 +78,12 @@ class RedditBrowser(Flox):
         webbrowser.open(url)
 
     def add_favorite(self, subreddit):
-        with open('./history.json', "r+") as file:
-            file_data = json.load(file)
-            file_data.append(subreddit)
-            file.seek(0)
-            json.dump(file_data, file, indent=4)
+        favorites = self.settings.setdefault("favorites", [])
+        favorites.append(subreddit)
+        self.settings.update({"hidden_entities": favorites})
+        self.show_msg(
+            "Entity hidden", f"{subreddit} added to your favorites."
+        )
 
 if __name__ == "__main__":
     RedditBrowser()
