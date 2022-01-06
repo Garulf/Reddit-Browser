@@ -1,7 +1,7 @@
 import webbrowser
 import json
 
-from flox import Flox, utils, ICON_HISTORY, APP_ICONS, ICON_BROWSER
+from flox import Flox, utils, ICON_HISTORY, APP_ICONS, ICON_BROWSER, ICON_CANCEL
 from reddit import Reddit
 from requests.exceptions import HTTPError
 
@@ -23,6 +23,7 @@ class RedditBrowser(Flox):
                         title=f'r/{item}',
                         subtitle='Browse subreddit',
                         icon=f'{APP_ICONS}/bookmark.png',
+                        context=[item, ''],
                         method=self.change_query,
                         parameters=[f'{self.user_keyword} /{item}'.replace('* ', '')],
                         dont_hide=True
@@ -66,12 +67,20 @@ class RedditBrowser(Flox):
             method=self.open_url,
             parameters=[url]
         )
-        self.add_item(
-            title='Add subreddit to favorites',
-            icon=f'{APP_ICONS}/bookmark.png',
-            method=self.add_favorite,
-            parameters=[subreddit]
-        )
+        if subreddit in self.settings['favorites']:
+            self.add_item(
+                title='Remove from Favorites',
+                icon=ICON_CANCEL,
+                method=self.remove_favorite,
+                parameters=[subreddit]
+            )
+        else:
+            self.add_item(
+                title='Add subreddit to favorites',
+                icon=f'{APP_ICONS}/bookmark.png',
+                method=self.add_favorite,
+                parameters=[subreddit]
+            )
 
     def open_url(self, end_point):
         url = f'https://www.reddit.com{end_point}'
@@ -82,7 +91,15 @@ class RedditBrowser(Flox):
         favorites.append(subreddit)
         self.settings.update({"favorites": favorites})
         self.show_msg(
-            "Entity hidden", f"{subreddit} added to your favorites."
+            "Favorite Added", f"{subreddit} added to your favorites."
+        )
+
+    def remove_favorite(self, subreddit):
+        favorites = self.settings.setdefault("favorites", [])
+        favorites.remove(subreddit)
+        self.settings.update({"favorites": favorites})
+        self.show_msg(
+            "Favorite Removed", f"{subreddit} removed from your favorites."
         )
 
 if __name__ == "__main__":
