@@ -67,7 +67,7 @@ class RedditBrowser(Flox):
             method=self.open_url,
             parameters=[url]
         )
-        if subreddit in self.settings['favorites']:
+        if subreddit in self.settings.get('favorites', []):
             self.add_item(
                 title='Remove from Favorites',
                 icon=ICON_CANCEL,
