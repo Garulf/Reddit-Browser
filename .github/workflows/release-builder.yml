@@ -35,15 +35,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install wheel
           pip install -r ./requirements.txt -t ./lib
-      - name: Get Plugin's Main script
-        id: ExecuteFileName
-        uses: notiz-dev/github-action-json-property@release
-        with: 
-          path: 'plugin.json'
-          prop_path: 'ExecuteFileName'
-      - name: Test run
-        id: test
-        run: python ${{steps.ExecuteFileName.outputs.prop}} 
       - name: Get Plugin's version
         id: version
         uses: notiz-dev/github-action-json-property@release
