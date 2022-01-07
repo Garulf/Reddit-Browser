@@ -13,6 +13,8 @@ jobs:
         run: |
           Start-Process -FilePath ".\Flow-Launcher-Setup.exe" -PassThru
       - name: Check installation
-        run: ls $env:APPDATA/FlowLauncher
+        run: |
+          sleep 15
+          ls $env:APPDATA/FlowLauncher
       - name: Check download
         run: ls
