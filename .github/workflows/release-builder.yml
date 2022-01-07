@@ -9,6 +9,8 @@ on:
       - .github/workflows/*
       - README.md
       - assets/*
+env:
+  PYTHON_VER: 3.8
 jobs:
   deps:
     if: ${{ github.ref == 'refs/heads/main' }}
