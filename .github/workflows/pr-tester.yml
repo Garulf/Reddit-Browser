@@ -7,8 +7,12 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Download a file
-        run: Invoke-WebRequest -Uri 'https://github.com/Flow-Launcher/Flow.Launcher/releases/latest/download/Flow-Launcher-Setup.exe' -OutFile './Flow-Launcher-Setup.exe'
+        run: |
+          Invoke-WebRequest -Uri "https://github.com/Flow-Launcher/Flow.Launcher/releases/latest/download/Flow-Launcher-Setup.exe" -OutFile "./Flow-Launcher-Setup.exe"
       - name: Install Flow Launcher
-        run: "& ./Flow-Launcher-Setup.exe"
+        run: |
+          Start-Process -Wait -FilePath ".\Flow-Launcher-Setup.exe" -PassThru
       - name: Check installation
         run: ls $env:APPDATA/FlowLauncher
+      - name: Check download
+        run: ls
