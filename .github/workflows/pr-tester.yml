@@ -1,0 +1,9 @@
+name: "PR-Tester"
+on:
+  workflow_dispatch:
+jobs:
+  deps:
+    name: "Build"
+    runs-on: windows-latest
+    steps:
+      - run: WinGet install "Flow Launcher"
