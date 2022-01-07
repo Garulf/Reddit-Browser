@@ -18,7 +18,7 @@ jobs:
           key: ${{ runner.os }}-flow-
       - name: Download Flow Launcher
         run: |
-          if (-Not(Test-Path('.\Flow-Launcher-Setup.exe'))
+          if (-Not (Test-Path .\Flow-Launcher-Setup.exe))
           {
             curl.exe -L -o Flow-Launcher-Setup.exe "https://github.com/Flow-Launcher/Flow.Launcher/releases/latest/download/Flow-Launcher-Setup.exe"
           }
