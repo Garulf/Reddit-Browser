@@ -11,11 +11,11 @@ jobs:
           curl.exe -L -o Flow-Launcher-Setup.exe "https://github.com/Flow-Launcher/Flow.Launcher/releases/latest/download/Flow-Launcher-Setup.exe"
       - name: Check download
         run: ls
-      - name: Install Flow Launcher
-        run: |
-          Start-Process -FilePath ".\Flow-Launcher-Setup.exe" -PassThru
+      - name: install build tools
+        run: .\Flow-Launcher-Setup.exe
+        shell: cmd
       - name: Check installation
         run: |
-          sleep 15
+          sleep 30
           ls $env:APPDATA/FlowLauncher
 
