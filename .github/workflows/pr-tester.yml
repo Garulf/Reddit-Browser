@@ -10,3 +10,5 @@ jobs:
         run: Invoke-WebRequest -Uri 'https://github.com/Flow-Launcher/Flow.Launcher/releases/latest/download/Flow-Launcher-Setup.exe' -OutFile './Flow-Launcher-Setup.exe'
       - name: Install Flow Launcher
         run: "& ./Flow-Launcher-Setup.exe"
+      - name: Check installation
+        run: ls $env:APPDATA/FlowLauncher
