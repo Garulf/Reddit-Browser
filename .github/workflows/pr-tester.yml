@@ -7,4 +7,4 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Download a file
-        run: curl https://github.com/Flow-Launcher/Flow.Launcher/releases/latest/download/Flow-Launcher-Setup.exe -o ./
+        run: curl https://github.com/Flow-Launcher/Flow.Launcher/releases/latest/download/Flow-Launcher-Setup.exe -o ./Flow-Launcher-Setup.exe
