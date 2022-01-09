@@ -31,10 +31,10 @@ jobs:
           path: ${{github.event.repository.name}}
       - name: Move checkout repo
         run: |
-          $repo_path = Join-Path -Path ${{ env.CWD }} -ChildPath ${{github.event.repository.name}}
+          $repo_path = Join-Path -Path $pwd -ChildPath ${{github.event.repository.name}}
           $plugin_path = Join-Path -Path $env:APPDATA -ChildPath 'FlowLauncher' | Join-Path -ChildPath ${{github.event.repository.name}}
           New-Item -ItemType SymbolicLink -Path $plugin_path -Target $repo_path
-          echo "CWD=$plugin_path" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+          echo "PLUGIN_PATH=$plugin_path" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -47,7 +47,7 @@ jobs:
             ${{ runner.os }}-pip-
       - name: Install dependencies
         run: |
-          cd ${{ env.CWD }}
+          cd ${{ env.PLUGIN_PATH }}
           python -m pip install --upgrade pip
           pip install wheel
           pip install -r ./requirements.txt -t ./lib
@@ -55,10 +55,10 @@ jobs:
         id: exe
         uses: notiz-dev/github-action-json-property@release
         with: 
-          path: '{{ env.CWD }}/plugin.json'
+          path: '{{ env.PLUGIN_PATH }}/plugin.json'
           prop_path: 'ExecuteFileName'
       - name: Test Run
         run: |
-          cd ${{ env.CWD }}
+          cd ${{ env.PLUGIN_PATH }}
           python ${{steps.ExecuteFileName.outputs.prop}}
 
