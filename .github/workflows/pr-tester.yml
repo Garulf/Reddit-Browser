@@ -34,8 +34,9 @@ jobs:
           echo "CWD=$path" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
       - name: Checkout Plugin Repo
         uses: actions/checkout@v2
-        with:
-          path: ${{ env.CWD }}
+      - name: Move checkout repo
+        run: |
+          mv ./${{github.event.repository.name}} ${{ env.CWD }}
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
