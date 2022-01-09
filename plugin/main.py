@@ -60,7 +60,7 @@ class RedditBrowser(Flox):
                     return
 
     def context_menu(self, data):
-        subreddit, url = data
+        subreddit, url  data
         self.add_item(
             title='Open in Browser',
             icon=ICON_BROWSER,
