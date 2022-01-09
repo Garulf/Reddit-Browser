@@ -46,4 +46,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install wheel
           pip install -r ./requirements.txt -t ./lib
+      - name: Get Plugin's execute file
+        id: ExecuteFileName
+        uses: notiz-dev/github-action-json-property@release
+        with: 
+          path: 'plugin.json'
+          prop_path: 'ExecuteFileName'
+      - name: Test Run
+        run: |
+          python ${{steps.ExecuteFileName.outputs.prop}}
 
