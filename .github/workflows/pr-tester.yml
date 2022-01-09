@@ -55,7 +55,7 @@ jobs:
         id: exe
         uses: notiz-dev/github-action-json-property@release
         with: 
-          path: '{{ env.PLUGIN_PATH }}/plugin.json'
+          path: '${{ env.PLUGIN_PATH }}/plugin.json'
           prop_path: 'ExecuteFileName'
       - name: Test Run
         run: |
