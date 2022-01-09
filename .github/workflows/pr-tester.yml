@@ -3,13 +3,13 @@ on:
   pull_request:
     types: [opened, edited, reopened, ready_for_review]
   workflow_dispatch:
+env:
+  PYTHON_VER: 3.8
 jobs:
   deps:
     name: "Test"
     runs-on: windows-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
       - name: Load Cache
         uses: actions/cache@v2
         if: startsWith(runner.os, 'Windows')
@@ -25,4 +25,25 @@ jobs:
       - name: Install Flow Launcher
         run: .\Flow-Launcher-Setup.exe
         shell: cmd
+      - name: Create & Move to plugin Directory
+        run: |
+          mkdir $env:APPDATA\${{github.event.repository.name}}
+          cd $env:APPDATA\${{github.event.repository.name}}
+      - name: Checkout Plugin Repo
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: PYTHON_VER
+      - uses: actions/cache@v2
+        with:
+          path: ~\AppData\Local\pip\Cache
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install wheel
+          pip install -r ./requirements.txt -t ./lib
 
