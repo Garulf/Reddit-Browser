@@ -95,7 +95,7 @@ def favorite_results() -> List[RedditResult]:
         results.append(RedditResult(
             title=f"r/{name}",
             subtitle="Browse subreddit",
-            icon=icon("bookmark"),
+            icon=ICON,
             context_data=[name, f"/r/{name}/"],
             auto_complete_text=subreddit_query,
         ).add_action(change_query, [subreddit_query]))
@@ -135,7 +135,7 @@ def context_menu(data):
         return []
     subreddit, permalink = data
     results = [
-        RedditResult(title="Open in Browser", icon=icon("browser")).add_action(api.open_url(BASE_URL + permalink)),
+        RedditResult(title="Open in Browser", icon=icon("Browser")).add_action(api.open_url(BASE_URL + permalink)),
     ]
     if not subreddit:
         return results
@@ -149,7 +149,7 @@ def context_menu(data):
     else:
         results.append(RedditResult(
             title="Add subreddit to favorites",
-            icon=icon("bookmark"),
+            icon=ICON,
             settings_change={"favorites": current + [subreddit]},
         ).add_action(api.show_msg("Favorite Added", f"{subreddit} added to your favorites.", ICON)))
     return results

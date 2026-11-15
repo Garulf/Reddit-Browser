@@ -1,4 +1,5 @@
 import asyncio
+from pathlib import Path
 
 import browser
 from launcher import KEEP_OPEN
@@ -138,3 +139,15 @@ def test_results_always_send_a_preview(fake_reddit):
     data = run_query("released")[0].to_json()
     assert data["Preview"] == {"PreviewImagePath": None, "Description": "🡅2048 • 🡇0 - r/Python ", "IsMedia": False}
     assert "SettingsChange" not in data
+
+
+def test_icons_exist_in_flow_launcher(fake_reddit, monkeypatch):
+    from pyflowlauncher.icons import Icons
+
+    monkeypatch.setattr(browser.plugin.launcher, "icons", Icons(Path("C:/FlowLauncher")))
+    shipped = {"Browser.png", "cancel.png", "app_error.png"}
+    favorite_icons = [result.icon for result in run_query("/")]
+    menu_icons = [result.icon for result in browser.context_menu(["rust", "/r/rust/"])]
+    menu_icons += [result.icon for result in browser.context_menu(["Python", "/r/Python/"])]
+    for icon in favorite_icons + menu_icons:
+        assert icon == browser.ICON or Path(icon).name in shipped
