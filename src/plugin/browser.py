@@ -52,9 +52,8 @@ def parse_query(query: str):
     """Split a query into (subreddit, search). subreddit is None for the front page."""
     if not query.startswith("/"):
         return None, query
-    name = query.split(" ")[0][1:]
-    search = query.split(" ")[-1].strip() if " " in query else ""
-    return name, search
+    name, _, search = query[1:].partition(" ")
+    return name, search.strip()
 
 
 async def fetch_posts(subreddit: Optional[str]) -> List[dict]:

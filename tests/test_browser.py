@@ -78,6 +78,11 @@ def test_subreddit_query_filters_by_search(fake_reddit):
     assert titles(run_query("/flowlauncher plugins")) == ["What plugins do you use every day?"]
 
 
+def test_subreddit_query_filters_by_the_whole_search(fake_reddit):
+    assert titles(run_query("/flowlauncher plugins do you")) == ["What plugins do you use every day?"]
+    assert titles(run_query("/flowlauncher 2.0 plugins")) == []
+
+
 def test_blocked_request_shows_error_result_instead_of_crashing(blocked_reddit):
     results = run_query("")
     assert len(results) == 1
