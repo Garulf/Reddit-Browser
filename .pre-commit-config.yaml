@@ -5,6 +5,8 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-added-large-files
+        # The README hero image is about 580 KB.
+        args: [--maxkb=800]
       - id: check-merge-conflict
       - id: check-yaml
       - id: check-json

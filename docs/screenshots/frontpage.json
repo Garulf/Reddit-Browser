@@ -1,0 +1,31 @@
+{
+  "keyword": "r",
+  "query": "",
+  "icon": "../../data/icon.png",
+  "max_results": 4,
+  "selection": 0,
+  "results": [
+    {
+      "title": "My grandfather built this clock in 1962 and it still keeps perfect time",
+      "subtitle": "🡅41872 • 🡇0 - r/woodworking ",
+      "icon": "../../data/icon.png"
+    },
+    {
+      "title": "TIL octopuses have three hearts and blue blood",
+      "subtitle": "🡅35210 • 🡇0 - r/todayilearned ",
+      "icon": "../../data/icon.png"
+    },
+    {
+      "title": "Finally finished my first 1000 piece puzzle",
+      "subtitle": "🡅18904 • 🡇0 - r/pics ",
+      "icon": "../../data/icon.png"
+    },
+    {
+      "title": "What's a skill everyone should learn before 30?",
+      "subtitle": "🡅12655 • 🡇0 - r/AskReddit ",
+      "icon": "../../data/icon.png"
+    }
+  ],
+  "query_suggestion": "",
+  "show_caret": false
+}
