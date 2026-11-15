@@ -120,3 +120,6 @@ flox
 
 .vscode/
 history.json
+# OS/NAS cruft
+Thumbs.db
+@eaDir/

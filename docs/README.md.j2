@@ -1,0 +1,90 @@
+{% extends "base.md.j2" %}
+
+{% block badges_extra %} [![Downloads](https://img.shields.io/github/downloads/{{ project.owner }}/{{ project.repo }}/total)]({{ project.url }}/releases/latest){% endblock %}
+
+{% block usage %}
+## Features
+
+* **Front page at a glance.** `r` lists the hot posts on Reddit's front page.
+* **Any subreddit.** `r /flowlauncher` lists the hot posts in r/flowlauncher.
+* **Filter as you type.** Words after the subreddit narrow the posts down by title.
+* **Favorites.** Save the subreddits you visit most and reach them with `r /`.
+* **Opens in your browser.** `Enter` opens the post on reddit.com.
+
+## Usage
+
+Type `r` and a space to see the hot posts on the front page. Keep typing to filter them by title:
+
+```
+r
+r python
+```
+
+{{ screenshot("frontpage", alt="Front page posts in Flow Launcher") }}
+
+| Query | Result |
+| --- | --- |
+| `r` | Hot posts on the front page |
+| `r <words>` | Front page posts whose title contains `<words>` |
+| `r /<subreddit>` | Hot posts in that subreddit, e.g. `r /flowlauncher` |
+| `r /<subreddit> <words>` | Posts in that subreddit whose title contains `<words>` |
+| `r /` | Your favorite subreddits |
+
+Flow Launcher needs a space after the action keyword, so type `r /python`, not `r/python`.
+
+### Browse a subreddit
+
+Type `/` followed by the subreddit name:
+
+{{ screenshot("subreddit", alt="Posts in r/flowlauncher in Flow Launcher") }}
+
+### Favorites
+
+Open the context menu on a post (`Shift+Enter` or right-click) and choose **Add subreddit to favorites**.
+Type `r /` to list your favorites, and select one to browse it. The same context menu has
+**Remove from Favorites** for subreddits you already saved.
+
+{{ screenshot("favorites", alt="Favorite subreddits in Flow Launcher") }}
+
+### When Reddit refuses the request
+
+Reddit has started blocking requests from this plugin for some users
+([#8]({{ project.url }}/issues/8)). When a request fails, the plugin shows an error result instead of
+posts. Press `Enter` on it to open the same page in your browser.
+
+## Installation
+
+### Flow Launcher
+
+In Flow Launcher, type:
+
+```
+pm install reddit browser
+```
+
+{{ screenshot("install", alt="Flow Launcher plugin manager installing Reddit Browser") }}
+
+### Manual installation
+
+Download `Reddit-Browser-<version>.zip` from the [latest release]({{ project.url }}/releases/latest) and unzip it into
+`%appdata%\FlowLauncher\Plugins`, then restart Flow Launcher.
+
+Pre-releases of the next version are published from the open release PR on the
+[releases page]({{ project.url }}/releases) for testing. Flow Launcher won't offer them as updates.
+
+## Requirements
+
+* Flow Launcher 1.17.0 or newer
+* Python 3.8 or newer, which Flow Launcher can install for you
+
+## Changelog
+
+{{ changelog(3) }}
+
+See [CHANGELOG.md](CHANGELOG.md) for the full history.
+{% endblock %}
+
+{% block screenshots %}{% endblock %}
+{% block install %}{% endblock %}
+{% block contributing %}{% endblock %}
+{% block license %}{% endblock %}

@@ -1,0 +1,26 @@
+{
+  "keyword": "r",
+  "query": "/flowlauncher",
+  "icon": "../../data/icon.png",
+  "max_results": 3,
+  "selection": 0,
+  "results": [
+    {
+      "title": "Show off your Flow Launcher theme",
+      "subtitle": "🡅412 • 🡇0 - r/flowlauncher Post a screenshot and a link to the theme file ",
+      "icon": "../../data/icon.png"
+    },
+    {
+      "title": "Which plugins do you use every day?",
+      "subtitle": "🡅268 • 🡇0 - r/flowlauncher ",
+      "icon": "../../data/icon.png"
+    },
+    {
+      "title": "Tip: hold Shift+Enter on a result to open its context menu",
+      "subtitle": "🡅151 • 🡇0 - r/flowlauncher ",
+      "icon": "../../data/icon.png"
+    }
+  ],
+  "query_suggestion": "",
+  "show_caret": false
+}
